@@ -11,16 +11,16 @@ namespace CATALOGO_WEB
 {
 
 
-    public partial class Default
+    public partial class Lista
     {
 
         /// <summary>
-        /// btnFavorito control.
+        /// dgvArticulos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFavorito;
+        protected global::System.Web.UI.WebControls.GridView dgvArticulos;
     }
 }

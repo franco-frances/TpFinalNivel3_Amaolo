@@ -1,42 +1,41 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CATALOGO_WEB._Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster-Catalogo.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CATALOGO_WEB.Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+   
+        <%foreach (Dominio.Articulo articulo in lista)
+        { %>
+    
+    <div class="col">
+    <div class="background">
+        <div class="centering">
+            <div class="articles">
+                <article>
+                    <figure>
+                        <img src="<%:articulo.UrlImagen%>"
+                            alt="Preview">
+                    </figure>
+                    <div class="article-preview">
+                        <h2><%:articulo.Nombre %></h2>
+                        <p>
+                           <%:articulo.Descripcion %> 
+                        <a href="#" class="read-more" title="Read More">Read more
+                        </a>
+                            <asp:Button Text="Agregar a Favoritos" ID="btnFavorito" CssClass="btn btn-outline-primary" runat="server" />
+                        </p>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
+    </div>
 
+
+    <%} %>
+        </div>
 </asp:Content>
