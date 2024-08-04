@@ -9,14 +9,16 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
-        public List<Articulo> Listar()
+        public List<Articulo> Listar(string id = "")
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select Codigo, Nombre,A.Descripcion,M.Descripcion as Marca,C.Descripcion as Categoria, Precio,A.IdCategoria, A.IdMarca, A.Id, ImagenUrl from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca=M.Id And A.IdCategoria=C.Id");
+                datos.setearConsulta("select A.Id, Codigo, Nombre,A.Descripcion,M.Descripcion as Marca,C.Descripcion as Categoria, Precio,A.IdCategoria, A.IdMarca, A.Id, ImagenUrl from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca=M.Id And A.IdCategoria=C.Id");
+                if(id!="")
+                    datos.setearConsulta("select Codigo, Nombre,A.Descripcion,M.Descripcion as Marca,C.Descripcion as Categoria, Precio,A.IdCategoria, A.IdMarca, A.Id, ImagenUrl from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca=M.Id And A.IdCategoria=C.Id and A.Id= " + id);
                 datos.ejecutarLectura();
 
                 //leo el atributo lector(SqlReader) hasta que de false y en cada una de la vueltas se guarda el resultado 
@@ -148,7 +150,7 @@ namespace Negocio
 
         public List<Articulo> Listar(string campo, string criterio, string filtro)
         {
-
+            
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 

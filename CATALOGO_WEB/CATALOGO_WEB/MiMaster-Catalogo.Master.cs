@@ -13,29 +13,41 @@ namespace CATALOGO_WEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //VALIDA SI EL USUARIO TIENE PERMISO PARA ENTRAR EN LAS SIGUIENTES PAGINAS
-            if (!(Page is Login || Page is Default || Page is Registro || Page is Error))
-                if (!(Seguridad.sesionActiva(Session["Usuario"])))
-                    Response.Redirect("Login.aspx");
-           
 
-
-            //VALIDA SI LA SESSION  CARGA EL AVATAR O CARGA LA IMAGEN DE VACIO
-            if (Seguridad.sesionActiva(Session["Usuario"]) && !(((Usuario)Session["Usuario"]).ImagenPerfil == null))
+            try
             {
-                imgAvatar.ImageUrl = "~/img/" + ((Usuario)Session["Usuario"]).ImagenPerfil + "?t=" + DateTime.Now.Ticks.ToString(); ;
-            }
-            else
-            {
-                imgAvatar.ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRD2l0XfDG_4S7e4pSAsGL-ruHuEYlVTZDx-Y_TVLfg&s";
-               
-            }
+                //VALIDA SI EL USUARIO TIENE PERMISO PARA ENTRAR EN LAS SIGUIENTES PAGINAS
+                if (!(Page is Login || Page is Default || Page is Registro || Page is Error))
+                    if (!(Seguridad.sesionActiva(Session["Usuario"])))
+                        Response.Redirect("Login.aspx",false);
 
-            if(Seguridad.sesionActiva(Session["Usuario"]) == true)
-            {
-                lblUser.Text = "Bienvenido " + ((Usuario)Session["Usuario"]).Email;
 
+
+                //VALIDA SI LA SESSION  CARGA EL AVATAR O CARGA LA IMAGEN DE VACIO
+                if (Seguridad.sesionActiva(Session["Usuario"]) && !(((Usuario)Session["Usuario"]).ImagenPerfil == null))
+                {
+                    imgAvatar.ImageUrl = "~/img/" + ((Usuario)Session["Usuario"]).ImagenPerfil + "?t=" + DateTime.Now.Ticks.ToString(); ;
+                }
+                else
+                {
+                    imgAvatar.ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRD2l0XfDG_4S7e4pSAsGL-ruHuEYlVTZDx-Y_TVLfg&s";
+
+                }
+
+                if (Seguridad.sesionActiva(Session["Usuario"]) == true)
+                {
+                    lblUser.Text = "Bienvenido " + ((Usuario)Session["Usuario"]).Email;
+                    lblUser.ForeColor = System.Drawing.Color.White;
+
+                }
             }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+            
 
         }
 
@@ -44,5 +56,7 @@ namespace CATALOGO_WEB
             Session.Clear();
             Response.Redirect("Login.aspx", false);
         }
+
+
     }
 }

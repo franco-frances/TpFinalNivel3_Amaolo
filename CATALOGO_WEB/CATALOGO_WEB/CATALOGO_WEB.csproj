@@ -71,6 +71,8 @@
     <Content Include="Error.aspx" />
     <Content Include="Favoritos.aspx" />
     <Content Include="Formulario.aspx" />
+    <Content Include="img\10029651.png" />
+    <Content Include="img\user-login-icon-14.png" />
     <Content Include="img\welcomeToHellLogo.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />

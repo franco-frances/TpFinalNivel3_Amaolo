@@ -17,11 +17,16 @@ namespace CATALOGO_WEB
             {
                 if (!IsPostBack)
                 {
+                    txtNombre.Attributes["placeholder"] = "Ingrese nombre";
+                    txtApellido.Attributes["placeholder"] = "Ingrese apellido";
+
+
                     if (Seguridad.sesionActiva(Session["Usuario"]))
                     {
                         Usuario user = (Usuario)Session["Usuario"];
                         txtEmail.Text = user.Email;
                         //txtEmail.ReadOnly = true;
+                        txtEmail.Enabled = false;
                         txtNombre.Text = user.Nombre;
                         txtApellido.Text = user.Apellido;
                         
@@ -34,6 +39,7 @@ namespace CATALOGO_WEB
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
 

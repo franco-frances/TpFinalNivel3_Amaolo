@@ -12,11 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="Content/site.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #f5f5f5; padding-top:100px;">
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary nav-underline fixed-top " data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">
+                    <img src="img/10029651.png" class="rounded mx-auto d-block alert-heading" style="width:75px;" alt="Alternate Text" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,47 +36,42 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="Favoritos.aspx">Favoritos</a></li>
                                 <li><a class="dropdown-item" href="MiPerfil.aspx">Mi perfil</a></li>
-                               
+
                             </ul>
                         </li>
-                       
+
                     </ul>
-                    <%if (Page is CATALOGO_WEB.Default) { %>
-                    <div class="d-flex" role="search">
-                        <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success custom-margin" type="submit">Search</button>
-                    </div>
-                    <%}%>
+
                 </div>
             </div>
             <div class="d-flex">
                 <%
-                        if (!Negocio.Seguridad.sesionActiva(Session["Usuario"]))
-                        {%>
+                    if (!Negocio.Seguridad.sesionActiva(Session["Usuario"]))
+                    {%>
 
-                        <a href="Login.aspx" class="btn btn-success me-2">Login</a>
-                        <a href="Registro.aspx" class="btn btn-outline-primary m-auto ">Registrarse</a>
+                <a href="Login.aspx" class="btn btn-success m-auto me-2">Login</a>
+                <a href="Registro.aspx" class="btn btn-outline-primary m-auto ">Registrarse</a>
 
 
-                    <% }
-                        else
-                        {%>
+                <% }
+                    else
+                    {%>
 
-                        <asp:Button Text="Salir" ID="btnSalir" CssClass="btn btn-outline-primary me-2" OnClick="btnSalir_Click" runat="server" />
-                        <asp:Label ID="lblUser" Text="" CssClass="text-dark text-bg-primary m-auto me-2" runat="server" />
+                <asp:Button Text="Salir" ID="btnSalir" CssClass="btn btn-outline-primary m-auto me-2" OnClick="btnSalir_Click" CausesValidation="false" runat="server" />
+                <asp:Label ID="lblUser" Text="" CssClass="font-monospace text-nowrap text-decoration-underline m-auto me-2" runat="server" />
 
-                    <%}%>
+                <%}%>
 
-                    <asp:Image ID="imgAvatar" Style="height: 40px; width: 40px; border-radius: 50%; margin-left:6px;" runat="server" />
+                <asp:Image ID="imgAvatar" Style="height: 60px; width: 60px; border-radius: 50%; margin-left: 6px;" runat="server" CssClass="rounded-5" />
             </div>
         </nav>
 
 
         <div class="container">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
 
         </div>
     </form>

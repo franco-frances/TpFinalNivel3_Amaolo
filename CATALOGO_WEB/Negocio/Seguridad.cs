@@ -41,6 +41,18 @@ namespace Negocio
             }
             return usuario != null ? usuario.Admin : false;
         }
+
+        public static bool onlyNumbers(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 

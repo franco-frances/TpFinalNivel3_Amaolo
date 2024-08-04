@@ -13,12 +13,24 @@ namespace CATALOGO_WEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtUser.Attributes["placeholder"] = "Usuario";
+            txtPass.Attributes["placeholder"] = "Contraseña";
+
+            
+                
+              imgAvatar.ImageUrl = "~/img/user-login-icon-14.png";
+
+            
+
+
 
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
             UsuarioNegocio negocio = new UsuarioNegocio();
+            FavoritoNegocio favnegocio = new FavoritoNegocio();
+            List<Articulo> lista = new List<Articulo>();
             try
             {
 
@@ -27,7 +39,10 @@ namespace CATALOGO_WEB
                 usuario.Pass = txtPass.Text;
                 if (negocio.loguear(usuario))
                 {
+                    //Tengo una session con el usuario y una lista de articulos favoritos de ese usuario
                     Session.Add("Usuario", usuario);
+                    lista=favnegocio.ListarFavoritos(((Usuario)Session["Usuario"]).Id);
+                    Session.Add("Favoritos", lista);
                     Response.Redirect("Default.aspx", false);
                 }
                 else

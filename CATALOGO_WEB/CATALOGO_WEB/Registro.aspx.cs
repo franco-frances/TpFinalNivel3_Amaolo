@@ -13,13 +13,21 @@ namespace CATALOGO_WEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtEmail.Attributes["placeholder"] = "E-mail";
+            txtPassword.Attributes["placeholder"] = "Password";
         }
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
 
             try
             {
+                customValidator();
+
+
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Usuario usuario = new Usuario();
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 
@@ -36,6 +44,21 @@ namespace CATALOGO_WEB
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
+
+        }
+        protected void customValidator()
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                requiredValidator.Visible = true;
+                reValidator.Visible = false;
+            }
+            else
+            {
+                requiredValidator.Visible = false;
+                reValidator.Visible = true;
             }
 
 

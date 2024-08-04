@@ -1,6 +1,9 @@
 ﻿.custom-margin {
     margin-right: 20rem !important; /* Ajusta el valor según sea necesario */
 }
+
+
+
 /* Estilos para las tarjetas */
 :root {
     --primary: #DD946F;
@@ -78,4 +81,5 @@
 
 .articles article:hover img {
     transform: scale(1.1);
+}
 
