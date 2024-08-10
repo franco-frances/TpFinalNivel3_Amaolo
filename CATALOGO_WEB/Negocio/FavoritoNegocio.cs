@@ -76,6 +76,7 @@ namespace Negocio
 
         }
 
+        //Metodo para manejar los botones de agregar favoritos
         public void verificarFavoritos(List<Articulo> listaCompleta,int? idUsuario)
         {
             List<Articulo> listaFavoritos;

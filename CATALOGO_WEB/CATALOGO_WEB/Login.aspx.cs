@@ -29,8 +29,8 @@ namespace CATALOGO_WEB
         {
             Usuario usuario = new Usuario();
             UsuarioNegocio negocio = new UsuarioNegocio();
-            FavoritoNegocio favnegocio = new FavoritoNegocio();
-            List<Articulo> lista = new List<Articulo>();
+            //FavoritoNegocio favnegocio = new FavoritoNegocio();
+            //List<Articulo> lista = new List<Articulo>();
             try
             {
 
@@ -41,8 +41,8 @@ namespace CATALOGO_WEB
                 {
                     //Tengo una session con el usuario y una lista de articulos favoritos de ese usuario
                     Session.Add("Usuario", usuario);
-                    lista=favnegocio.ListarFavoritos(((Usuario)Session["Usuario"]).Id);
-                    Session.Add("Favoritos", lista);
+                    //lista=favnegocio.ListarFavoritos(((Usuario)Session["Usuario"]).Id);
+                    //Session.Add("Favoritos", lista);
                     Response.Redirect("Default.aspx", false);
                 }
                 else

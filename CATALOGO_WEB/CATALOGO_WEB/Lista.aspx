@@ -8,6 +8,11 @@
     <h1>Lista de articulos</h1>
     <h2>Zona Administracion</h2>
 
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+
+        
+    
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
@@ -93,6 +98,8 @@
 
 
     </asp:GridView>
+            </ContentTemplate>
+    </asp:UpdatePanel>
 
     <a href="Formulario.aspx" class="btn btn-primary">Agregar</a>
 

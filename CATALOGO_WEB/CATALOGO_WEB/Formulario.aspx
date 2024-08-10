@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-6">
                             <asp:CheckBox runat="server" ID="chkConfirmar"></asp:CheckBox>
-                            <asp:Label CssClass="form-control-sm" Text="Filtro Avanzado" runat="server" />
+                            <asp:Label CssClass="form-control-sm" Text="Confirmar Elimanacion" runat="server" />
                             <asp:Button runat="server" Text="Eliminar" ID="btnConfirmar" CssClass="btn btn-outline-danger" OnClick="btnConfirmar_Click"></asp:Button>
 
                         </div>

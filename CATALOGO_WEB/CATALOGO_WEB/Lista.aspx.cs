@@ -17,7 +17,7 @@ namespace CATALOGO_WEB
             {
                 if (!Seguridad.esAdmin(Session["Usuario"]))
                 {
-                    Session.Add("error", "Tenes que ser admin para ingresar a esta página");
+                    Session.Add("error", "Tenes que ser administrador para ingresar a esta página");
                     Response.Redirect("Error.aspx", false);
                 }
 

@@ -96,7 +96,7 @@ namespace CATALOGO_WEB
         {
             try
             {
-
+                //para que no se aparezcan desplazadas los textos de los validator
                 customValidator();
 
 
@@ -152,7 +152,7 @@ namespace CATALOGO_WEB
                 {
                     ArticuloNegocio negocio = new ArticuloNegocio();
                     negocio.eliminar(int.Parse(Request.QueryString["id"].ToString()));
-                    Response.Redirect("Lista.aspx");
+                    Response.Redirect("Lista.aspx",false);
 
                 }
 
