@@ -42,16 +42,13 @@ namespace Negocio
             return usuario != null ? usuario.Admin : false;
         }
 
-        public static bool onlyNumbers(string cadena)
+        public static bool emptyList(List<Articulo> lista)
         {
-            foreach (char caracter in cadena)
+            if (lista.Count == 0)
             {
-                if (!(char.IsNumber(caracter)))
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
+            return false;
         }
 
     }

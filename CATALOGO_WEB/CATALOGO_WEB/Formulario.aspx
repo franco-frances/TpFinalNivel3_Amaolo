@@ -129,7 +129,7 @@
                         <label for="urlImagen">URL imagen</label>
                     </div>
 
-                    <asp:Image ImageUrl="https://editorial.unc.edu.ar/wp-content/uploads/sites/33/2022/09/placeholder.png" runat="server" ID="imgArticulo" Width="60%" />
+                    <asp:Image ImageUrl="https://editorial.unc.edu.ar/wp-content/uploads/sites/33/2022/09/placeholder.png" runat="server" ID="imgArticulo" Width="60%" CssClass="img-fluid rounded" />
 
                 </ContentTemplate>
             </asp:UpdatePanel>

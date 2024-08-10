@@ -139,6 +139,10 @@ namespace CATALOGO_WEB
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 List<Articulo> lista = negocio.Listar(ddlCampo.SelectedValue.ToString(), ddlCriterio.SelectedValue.ToString(), txtFiltroAvanzado.Text);
+                if (Seguridad.emptyList(lista))
+                    notFound.Visible = true;
+                else
+                    notFound.Visible = false;
                 Repetidor.DataSource = lista;
                 Repetidor.DataBind();
 
@@ -156,6 +160,7 @@ namespace CATALOGO_WEB
             ddlCriterio.Items.Clear();
             txtFiltroAvanzado.Text = "";
             txtFiltrar.Text = "";
+            notFound.Visible = false;
             //Para que empiece cargado el ddl de campo
             if (ddlCampo.SelectedValue != "Precio")
             {
@@ -170,6 +175,8 @@ namespace CATALOGO_WEB
                 ddlCriterio.Items.Add("Menor a");
                 ddlCriterio.Items.Add("Igual a");
             }
+            
+            
 
             Repetidor.DataSource = Session["listaArticulos"];
             Repetidor.DataBind();
@@ -210,6 +217,12 @@ namespace CATALOGO_WEB
             {
                 lista = (List<Articulo>)Session["listaArticulos"];
                 List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltrar.Text.ToUpper()));
+                
+                if (Seguridad.emptyList(listaFiltrada))
+                    notFound.Visible = true;
+                else
+                    notFound.Visible = false;
+
                 Repetidor.DataSource = listaFiltrada;
                 Repetidor.DataBind();
             }

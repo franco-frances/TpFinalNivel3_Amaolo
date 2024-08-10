@@ -42,8 +42,8 @@ namespace CATALOGO_WEB
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
-            
-            
+
+
         }
 
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,6 +58,12 @@ namespace CATALOGO_WEB
             {
                 List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
                 List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltrar.Text.ToUpper()));
+
+                if (Seguridad.emptyList(listaFiltrada))
+                    notFound.Visible = true;
+                else
+                    notFound.Visible = false;
+
                 dgvArticulos.DataSource = listaFiltrada;
                 dgvArticulos.DataBind();
             }
@@ -67,7 +73,7 @@ namespace CATALOGO_WEB
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
-            
+
         }
 
         protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
@@ -106,7 +112,7 @@ namespace CATALOGO_WEB
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
@@ -114,9 +120,15 @@ namespace CATALOGO_WEB
 
 
                 ArticuloNegocio negocio = new ArticuloNegocio();
-            List<Articulo> lista = negocio.Listar(ddlCampo.SelectedValue.ToString(), ddlCriterio.SelectedValue.ToString(), txtFiltroAvanzado.Text);
-            dgvArticulos.DataSource = lista;
-            dgvArticulos.DataBind();
+                List<Articulo> lista = negocio.Listar(ddlCampo.SelectedValue.ToString(), ddlCriterio.SelectedValue.ToString(), txtFiltroAvanzado.Text);
+
+                if (Seguridad.emptyList(lista))
+                    notFound.Visible = true;
+                else
+                    notFound.Visible = false;
+
+                dgvArticulos.DataSource = lista;
+                dgvArticulos.DataBind();
 
             }
             catch (Exception ex)
@@ -131,6 +143,8 @@ namespace CATALOGO_WEB
         {
             ddlCriterio.Items.Clear();
             txtFiltroAvanzado.Text = "";
+            txtFiltrar.Text = "";
+            notFound.Visible = false;
             //Para que empiece cargado el ddl de campo
             if (ddlCampo.SelectedValue != "Precio")
             {
