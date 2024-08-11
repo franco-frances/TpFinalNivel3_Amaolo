@@ -75,7 +75,6 @@
     <Content Include="img\4516955.png" />
     <Content Include="img\5220262.png" />
     <Content Include="img\user-login-icon-14.png" />
-    <Content Include="img\welcomeToHellLogo.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Lista.aspx" />

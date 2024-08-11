@@ -42,7 +42,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select f.IdArticulo, A.Nombre, A.Descripcion, A.ImagenUrl from FAVORITOS F,ARTICULOS A where F.IdUser=@IdUser AND F.IdArticulo= A.Id");
+                datos.setearConsulta("select f.IdArticulo, A.Nombre, A.Descripcion, A.ImagenUrl, Precio from FAVORITOS F,ARTICULOS A where F.IdUser=@IdUser AND F.IdArticulo= A.Id");
                 datos.setearParametros("@IdUser", IdUser);
                 datos.ejecutarLectura();
 
@@ -53,6 +53,9 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal)datos.Lector["Precio"];
 
                     ArticulosFavoritos.Add(aux);
 
